@@ -5,6 +5,8 @@ import "./datepicker.css"
 import {addDays, addWeeks, format, getDate, isBefore, isSameDay, subDays, subWeeks} from "date-fns";
 
 export default function DatePicker(props) {
+    const VISUAL_DAYS_BEFORE_DEFAULT=7
+
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [softSelect, setSoftSelect] = useState(new Date());
     const [currentWeek, setCurrentWeek] = useState(new Date());
@@ -13,8 +15,7 @@ export default function DatePicker(props) {
 
 
     let enableSelectBefore= props.enableSelectBefore===undefined ? true : props.enableSelectBefore;
-
-    
+    let visualDaysBefore=props.visualDaysBefore===undefined ? VISUAL_DAYS_BEFORE_DEFAULT : props.visualDaysBefore;
 
     let {selectDate} = props;
     
@@ -67,7 +68,9 @@ export default function DatePicker(props) {
         const dayFormat = "E";
         const dateFormat = "d";
         const days = [];
-        let startDay = subDays(currentWeek,2); // if we want start day we have to calcolate the amount of date for now is 7
+        let startDay = subDays(currentWeek,visualDaysBefore); // if we want start day we have to calcolate the amount of date for now is 7
+        debugger
+
         for (let i = 0; i < maxValue; i++) {
             days.push(
                 <div id={`${getId(addDays(startDay, i))}`}
