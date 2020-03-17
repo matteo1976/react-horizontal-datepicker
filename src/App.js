@@ -8,7 +8,9 @@ function App() {
     };
   return (
     <div className="App">
-      <DatePicker getSelectedDay={selectedDay} shouldScroll={true}/>
+    <div style={{width:"50%", margin:"auto"}}> 
+      <DatePicker getSelectedDay={selectedDay} shouldScroll={false}  />
+    </div>
     </div>
   );
 }

@@ -29,13 +29,18 @@
     font-weight: bold;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
-    border: 2px solid rgb(77, 123, 243);
-    color: rgb(77, 123, 243);
+    border-radius: 2%;
+    background: rgb(213, 0, 48) !important;
+    border: 2px solid rgb(81, 75, 75);
+    color: rgb(240, 241, 243);
 }
 
 .DateDayItem--disabled {
     color: rgb(176, 176, 176);
+}
+
+.DateDayItem--current{
+    background: rgb(81, 75, 75);
 }
 
 .Datepicker--DateList--scrollable {
@@ -66,7 +71,7 @@
 .Datepicker--button-prev, .Datepicker--button-next{
     border: none;
     text-decoration: none;
-    background: rgb(77, 123, 243);
+    background: rgb(0, 2, 7);
     cursor: pointer;
     border-radius: 50%;
     width: 40px;
@@ -84,7 +89,7 @@
     margin-left: 12px;
     align-self: flex-start;
     font-size: 15px;
-    color: rgb(77, 123, 243);
+    color: rgb(213, 0, 48);
     font-weight: bold;
 }
 
@@ -96,4 +101,6 @@
     max-width: 100%;
     display: flex;
     width: 100%;
+    background: rgb(26,22,23);
+    color:white;
 }

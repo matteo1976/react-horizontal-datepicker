@@ -9,25 +9,34 @@ export default function DatePicker(props) {
     const [softSelect, setSoftSelect] = useState(new Date());
     const [currentWeek, setCurrentWeek] = useState(new Date());
     const [currentDate] = useState(new Date());
-    const {endDate, shouldScroll} = props;
+    const {endDate, shouldScroll,startDate} = props;
     let {selectDate} = props;
     let scroll = false;
     shouldScroll === true? scroll = true : scroll = false;
     let maxValue;
     if (scroll===false){
-        maxValue = 7;
+        maxValue = 10;
     }
     else{
-        maxValue = endDate | 90;
+        maxValue = endDate | 10;
     }
     const getStyles = (day) => {
         const classes = [];
+        //debugger
+        if (isSameDay(day, currentDate)) {
+            classes.push('DateDayItem--current')
+        }
+
         if (isSameDay(day, selectedDate)) {
             classes.push('DateDayItem--selected')
         }
+        
+
+
         if (isBefore(day, currentDate)) {
             classes.push('DateDayItem--disabled')
         }
+
         return classes.join(' ')
     };
     const getId = (day) => {
@@ -50,7 +59,7 @@ export default function DatePicker(props) {
         const dayFormat = "E";
         const dateFormat = "d";
         const days = [];
-        let startDay = subDays(currentWeek,3);
+        let startDay = subDays(currentWeek,2); // if we want start day we have to calcolate the amount of date for now is 7
         for (let i = 0; i < maxValue; i++) {
             days.push(
                 <div id={`${getId(addDays(startDay, i))}`}
