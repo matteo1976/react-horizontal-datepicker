@@ -9,8 +9,15 @@ export default function DatePicker(props) {
     const [softSelect, setSoftSelect] = useState(new Date());
     const [currentWeek, setCurrentWeek] = useState(new Date());
     const [currentDate] = useState(new Date());
-    const {endDate, shouldScroll,startDate} = props;
+    const {endDate, shouldScroll} = props;
+
+
+    let enableSelectBefore= props.enableSelectBefore===undefined ? true : props.enableSelectBefore;
+
+    
+
     let {selectDate} = props;
+    
     let scroll = false;
     shouldScroll === true? scroll = true : scroll = false;
     let maxValue;
@@ -27,15 +34,16 @@ export default function DatePicker(props) {
             classes.push('DateDayItem--current')
         }
 
+        if (isBefore(day, currentDate)) {
+            classes.push('DateDayItem--disabled')
+        }
+
         if (isSameDay(day, selectedDate)) {
             classes.push('DateDayItem--selected')
         }
         
 
 
-        if (isBefore(day, currentDate)) {
-            classes.push('DateDayItem--disabled')
-        }
 
         return classes.join(' ')
     };
@@ -86,8 +94,9 @@ export default function DatePicker(props) {
     }
 
     const onDateClick = day => {
-        if (!isBefore(day, currentDate)) {
-            selectDate = null;
+        
+        if (enableSelectBefore) {
+            //selectDate = null;
             setSelectedDate(day);
             if (props.getSelectedDay) {
                 props.getSelectedDay(day);
