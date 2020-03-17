@@ -42,10 +42,6 @@ export default function DatePicker(props) {
         if (isSameDay(day, selectedDate)) {
             classes.push('DateDayItem--selected')
         }
-        
-
-
-
         return classes.join(' ')
     };
     const getId = (day) => {
@@ -69,8 +65,7 @@ export default function DatePicker(props) {
         const dateFormat = "d";
         const days = [];
         let startDay = subDays(currentWeek,visualDaysBefore); // if we want start day we have to calcolate the amount of date for now is 7
-        debugger
-
+        
         for (let i = 0; i < maxValue; i++) {
             days.push(
                 <div id={`${getId(addDays(startDay, i))}`}
